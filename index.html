@@ -156,23 +156,26 @@
 
           <div class="space-y-3 font-mono text-xs">
             <div class="flex justify-between py-1 border-b border-gray-900">
-              <span class="text-gray-500">성명</span>
+              <span class="text-gray-500 whitespace-nowrap">성명</span>
               <span class="text-white font-bold">전여진 (YEOJIN JEON)</span>
             </div>
             <div class="flex justify-between py-1 border-b border-gray-900">
-              <span class="text-gray-500">생년월일</span>
+              <span class="text-gray-500 whitespace-nowrap">생년월일</span>
               <span class="text-gray-300">1995.10.16</span>
             </div>
             <div class="flex justify-between py-1 border-b border-gray-900">
-              <span class="text-gray-500">직무 분야</span>
+              <span class="text-gray-500 whitespace-nowrap">직무 분야</span>
               <span class="text-indigo-300">Game Master (GM) / PM</span>
             </div>
-            <div class="flex justify-between py-1 border-b border-gray-900">
-              <span class="text-gray-500">학력</span>
-              <span class="text-gray-300 text-right">Manitoba Institute of Trades and Tech. (네트워크 컴퓨터 공학)</span>
+            <div class="flex justify-between items-start py-1 border-b border-gray-900">
+              <span class="text-gray-500 whitespace-nowrap pt-0.5">학력</span>
+              <span class="text-gray-300 text-right leading-tight">
+                Manitoba Institute of Trades and Tech.<br>
+                <span class="text-gray-400 text-[11px]">(네트워크 컴퓨터 공학)</span>
+              </span>
             </div>
             <div class="flex justify-between py-1">
-              <span class="text-gray-500">어학 성적</span>
+              <span class="text-gray-500 whitespace-nowrap">어학 성적</span>
               <span class="text-emerald-400">TOEIC 855 (비즈니스 영어 가능)</span>
             </div>
           </div>
@@ -675,7 +678,7 @@
 
         container.innerHTML = `
           <div class="text-brand-300 font-bold text-sm mb-2">[GM 이벤트] 끝말잇기 릴레이 이벤트 안내</div>
-          <div>안녕하세요, <strong>${game}</strong> ${userTitle} 여러분! <strong>[GM ${gm}]</strong> 입니다.</div>
+          <div>안녕하세요, 여러분! <br> 
           <div class="mt-1">모험가 여러분과의 즐거운 소통을 위해 GM과 함께하는 끝말잇기 릴레이 이벤트를 준비했습니다!</div>
           <div>댓글로 끝말잇기를 이어 나가기만 해도 전체 보상을 획득할 수 있으니 ${userTitle} 여러분의 많은 참여 바랍니다.</div>
           
