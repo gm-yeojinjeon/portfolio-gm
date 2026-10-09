@@ -511,7 +511,7 @@
             <div class="grid grid-cols-2 gap-2">
               <div>
                 <label class="block text-xs font-mono text-gray-300 mb-1">게임명</label>
-                <input type="text" id="ev-game" value="아키론" oninput="updateNoticePreview()" class="w-full bg-gray-950 border border-gray-800 rounded-lg p-2.5 text-xs text-gray-200 focus:border-brand-500 focus:outline-none">
+                <input type="text" id="ev-game" value="스텔라리스" oninput="updateNoticePreview()" class="w-full bg-gray-950 border border-gray-800 rounded-lg p-2.5 text-xs text-gray-200 focus:border-brand-500 focus:outline-none">
               </div>
               <div>
                 <label class="block text-xs font-mono text-gray-300 mb-1">GM 닉네임</label>
@@ -519,7 +519,7 @@
               </div>
             </div>
             <div>
-              <label class="block text-xs font-mono text-gray-300 mb-1">GM 제시어</label>
+              <label class="block text-xs font-mono text-gray-300 mb-1">유저 호칭</label>
               <input type="text" id="ev-word" value="모험가" oninput="updateNoticePreview()" class="w-full bg-gray-950 border border-gray-800 rounded-lg p-2.5 text-xs text-gray-200 focus:border-brand-500 focus:outline-none">
             </div>
             <div class="grid grid-cols-3 gap-2">
@@ -550,7 +550,7 @@
             <span class="text-[10px] text-gray-500">FORMAT: OFFICIAL_KR</span>
           </div>
 
-          <div id="notice-preview-content" class="text-gray-300 leading-relaxed whitespace-pre-line space-y-3 font-sans">
+          <div id="notice-preview-content" class="text-gray-300 leading-normal space-y-2 font-sans">
             <!-- Dynamic Notice JS insertion -->
           </div>
 
@@ -671,94 +671,105 @@
       if (type === 'event') {
         const game = document.getElementById('ev-game').value || '게임명';
         const gm = document.getElementById('ev-gm').value || '이름';
-        const word = document.getElementById('ev-word').value || '모험가';
+        const userTitle = document.getElementById('ev-word').value || '모험가';
         const itemA = document.getElementById('ev-item-a').value || '아이템A';
         const itemB = document.getElementById('ev-item-b').value || '아이템B';
         const itemC = document.getElementById('ev-item-c').value || '아이템C';
 
         container.innerHTML = `
-          <p class="text-brand-300 font-bold text-sm">[GM 이벤트] 끝말잇기 릴레이 이벤트 안내</p>
-          <p>안녕하세요, <strong>${game}</strong> <strong>[GM ${gm}]</strong> 입니다.</p>
-          <p>모험가 여러분과의 즐거운 소통을 위해 GM과 함께하는 끝말잇기 릴레이 이벤트를 준비했습니다!<br>댓글로 끝말잇기를 이어 나가기만 해도 전체 보상을 획득할 수 있으니 모험가 여러분의 많은 참여 바랍니다!</p>
+          <div class="text-brand-300 font-bold text-sm mb-2">[GM 이벤트] 끝말잇기 릴레이 이벤트 안내</div>
+          <div>안녕하세요, <strong>${game}</strong> ${userTitle} 여러분! <strong>[GM ${gm}]</strong> 입니다.</div>
+          <div>${userTitle} 여러분과의 즐거운 소통을 위해 GM과 함께하는 끝말잇기 릴레이 이벤트를 준비했습니다! 댓글로 끝말잇기를 이어 나가기만 해도 전체 보상을 획득할 수 있으니 ${userTitle} 여러분의 많은 참여 바랍니다.</div>
           
-          <div class="p-3 bg-gray-900 border border-gray-800 rounded my-2 space-y-1">
-            <p class="text-indigo-300 font-bold">■ 이벤트 기간</p>
-            <p class="text-gray-300 pl-2">- 진행 기간: 2026년 10월 10일(토) 15:00 ~ 2026년 10월 17일(토) 23:59까지</p>
-            <p class="text-gray-300 pl-2">- 보상 지급일: 2026년 10월 20일(화) 정기 점검 시 우편 지급</p>
+          <div class="p-3 bg-gray-900 border border-gray-800 rounded my-3 space-y-2">
+            <div>
+              <div class="text-indigo-300 font-bold">■ 이벤트 기간</div>
+              <div class="text-gray-300 pl-2 mt-0.5">- 진행 기간: 2026년 10월 10일(토) 15:00 ~ 2026년 10월 17일(토) 23:59까지</div>
+              <div class="text-gray-300 pl-2">- 보상 지급일: 2026년 10월 20일(화) 정기 점검 시 우편 지급</div>
+            </div>
             
-            <p class="text-indigo-300 font-bold pt-2">■ 참여 방법</p>
-            <p class="text-gray-300 pl-2">1. 이벤트 게시글 아래 댓글로 GM이 제시한 시작 단어의 끝말을 이어 댓글을 작성합니다.</p>
-            <p class="text-gray-300 pl-2">2. 댓글 작성 시 [서버명 / 캐릭터명 / 단어] 형식에 맞춰 입력해 주세요.</p>
-            <p class="text-gray-400 pl-4">- 예시: [루페온 / GM포트 / 트롤리]</p>
-            <p class="text-gray-300 pl-2">3. 전체 참여자의 달성 댓글 수가 목표 단계에 도달하면 모든 모험가님께 선물을 드립니다!</p>
-
-            <p class="text-indigo-300 font-bold pt-2">■ 제시어 및 진행 규칙</p>
-            <p class="text-gray-300 pl-2">- GM 제시어: <strong class="text-emerald-400">${word}</strong></p>
-            <p class="text-gray-300 pl-2">- 단어 규칙: 두 글자 이상의 단어만 인정되며, 표준국어대사전에 등재된 단어만 인정됩니다. (한방 단어, 욕설, 비속어 금지)</p>
-
-            <p class="text-indigo-300 font-bold pt-2">■ 목표 달성 보상 List</p>
-            <div class="overflow-x-auto my-1">
-              <table class="w-full text-left text-xs border-collapse border border-gray-800 my-1">
-                <thead>
-                  <tr class="bg-gray-800 text-gray-200">
-                    <th class="p-1.5 border border-gray-700">목표 댓글 수</th>
-                    <th class="p-1.5 border border-gray-700">보상 아이템</th>
-                  </tr>
-                </thead>
-                <tbody class="divide-y divide-gray-800">
-                  <tr><td class="p-1.5 border border-gray-800">댓글 100개 달성</td><td class="p-1.5 border border-gray-800 text-emerald-400">${itemA}</td></tr>
-                  <tr><td class="p-1.5 border border-gray-800">댓글 300개 달성</td><td class="p-1.5 border border-gray-800 text-emerald-400">${itemB}</td></tr>
-                  <tr><td class="p-1.5 border border-gray-800">댓글 500개 달성</td><td class="p-1.5 border border-gray-800 text-emerald-400">${itemC}</td></tr>
-                </tbody>
-              </table>
+            <div>
+              <div class="text-indigo-300 font-bold">■ 참여 방법</div>
+              <div class="text-gray-300 pl-2 mt-0.5">1. 이벤트 게시글 아래 댓글로 GM이 제시한 시작 단어의 끝말을 이어 댓글을 작성합니다.</div>
+              <div class="text-gray-300 pl-2">2. 댓글 작성 시 <strong>[서버명 / 캐릭터명 / 단어]</strong> 형식에 맞춰 입력해 주세요. (예: [루페온 / GM포트 / 트롤리])</div>
+              <div class="text-gray-300 pl-2">3. 전체 참여자의 달성 댓글 수가 목표 단계에 도달하면 모든 ${userTitle}님께 선물을 드립니다!</div>
             </div>
 
-            <p class="text-indigo-300 font-bold pt-2">■ 자주 묻는 질문 (FAQ)</p>
-            <p class="text-gray-300 font-semibold pl-2">Q. 댓글을 여러 번 작성해도 되나요?</p>
-            <p class="text-gray-400 pl-4 mb-1">A. 끝말잇기 흐름에 맞춰 여러 번 참여하는 것은 가능하지만, 목표 댓글 수 집계 시 동일 계정의 연속 도배성 댓글은 1회로 처리됩니다. 다른 모험가분들과 차례를 지켜 참여해 주세요!</p>
-            <p class="text-gray-300 font-semibold pl-2">Q. 캐릭터명을 잘못 작성했어요.</p>
-            <p class="text-gray-400 pl-4 mb-1">A. 이벤트 기간 종료 전까지 댓글을 수정해 주시면 됩니다. 작성 형식을 지키지 않거나 캐릭터명이 불정확할 경우 보상 지급 대상에서 제외될 수 있습니다.</p>
-            <p class="text-gray-300 font-semibold pl-2">Q. 두음 법칙도 적용되나요?</p>
-            <p class="text-gray-400 pl-4">A. 네, 국립국어원 표준 두음 법칙을 적용한 단어 연결이 인정됩니다. (예: 리 -> 니, 녀 -> 여)</p>
+            <div>
+              <div class="text-indigo-300 font-bold">■ 제시어 및 진행 규칙</div>
+              <div class="text-gray-300 pl-2 mt-0.5">- GM 제시어: <strong class="text-emerald-400">${userTitle}</strong></div>
+              <div class="text-gray-300 pl-2">- 두 글자 이상의 단어만 인정되며, 표준국어대사전에 등재된 단어만 인정됩니다. (한방 단어, 욕설, 비속어 금지)</div>
+            </div>
 
-            <p class="text-indigo-300 font-bold pt-2">■ 유의 사항</p>
-            <p class="text-gray-400 pl-2">- 부적절한 단어, 욕설, 타인을 비방하는 내용이 포함된 댓글은 사전 안내 없이 삭제될 수 있으며 이벤트 대상에서 제외됩니다.</p>
-            <p class="text-gray-400 pl-2">- 이벤트 보상은 계정당 1회만 지급됩니다.</p>
+            <div>
+              <div class="text-indigo-300 font-bold">■ 목표 달성 보상 List</div>
+              <div class="overflow-x-auto my-1">
+                <table class="w-full text-left text-xs border-collapse border border-gray-800 my-1">
+                  <thead>
+                    <tr class="bg-gray-800 text-gray-200">
+                      <th class="p-1.5 border border-gray-700">목표 댓글 수</th>
+                      <th class="p-1.5 border border-gray-700">보상 아이템</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-gray-800">
+                    <tr><td class="p-1.5 border border-gray-800">댓글 100개 달성</td><td class="p-1.5 border border-gray-800 text-emerald-400">${itemA}</td></tr>
+                    <tr><td class="p-1.5 border border-gray-800">댓글 300개 달성</td><td class="p-1.5 border border-gray-800 text-emerald-400">${itemB}</td></tr>
+                    <tr><td class="p-1.5 border border-gray-800">댓글 500개 달성</td><td class="p-1.5 border border-gray-800 text-emerald-400">${itemC}</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div>
+              <div class="text-indigo-300 font-bold">■ 자주 묻는 질문 (FAQ)</div>
+              <div class="text-gray-300 font-semibold pl-2 mt-0.5">Q. 댓글을 여러 번 작성해도 되나요?</div>
+              <div class="text-gray-400 pl-4">A. 끝말잇기 흐름에 맞춰 여러 번 참여하는 것은 가능하지만, 목표 댓글 수 집계 시 동일 계정의 연속 도배성 댓글은 1회로 처리됩니다.</div>
+              <div class="text-gray-300 font-semibold pl-2 mt-1">Q. 캐릭터명을 잘못 작성했어요.</div>
+              <div class="text-gray-400 pl-4">A. 이벤트 기간 종료 전까지 댓글을 수정해 주시면 됩니다. 작성 형식을 지키지 않을 경우 보상 지급 대상에서 제외될 수 있습니다.</div>
+              <div class="text-gray-300 font-semibold pl-2 mt-1">Q. 두음 법칙도 적용되나요?</div>
+              <div class="text-gray-400 pl-4">A. 네, 국립국어원 표준 두음 법칙을 적용한 단어 연결이 인정됩니다. (예: 리 -&gt; 니, 녀 -&gt; 여)</div>
+            </div>
+
+            <div>
+              <div class="text-indigo-300 font-bold">■ 유의 사항</div>
+              <div class="text-gray-400 pl-2 mt-0.5">- 부적절한 단어, 욕설, 타인을 비방하는 내용이 포함된 댓글은 사전 안내 없이 삭제될 수 있습니다.</div>
+              <div class="text-gray-400 pl-2">- 이벤트 보상은 계정당 1회만 지급됩니다.</div>
+            </div>
           </div>
 
-          <p>감사합니다.</p>
+          <div>감사합니다.</div>
         `;
       } else if (type === 'emergency') {
         const time = document.getElementById('sim-time').value;
         const reason = document.getElementById('sim-reason').value;
         container.innerHTML = `
-          <p class="text-brand-300 font-bold">[안내] 긴급 점검 안내</p>
-          <p>안녕하세요.</p>
-          <p>서버 안정화를 위한 긴급 점검이 진행됩니다.<br>자세한 내용은 아래를 확인 부탁드립니다.</p>
-          <div class="p-3 bg-gray-900 border border-gray-800 rounded my-2 space-y-1">
-            <p><strong>■ 점검 시간:</strong> ${time}</p>
-            <p><strong>■ 점검 내용:</strong> ${reason}</p>
-            <p><strong>■ 참고사항</strong></p>
-            <p class="text-gray-400 pl-2">- 해당 기간 동안 게임 접속 및 서비스 이용이 불가능합니다.</p>
-            <p class="text-gray-400 pl-2">- 점검 시간은 진행 상황에 따라 변동될 수 있습니다.</p>
+          <div class="text-brand-300 font-bold text-sm mb-2">[안내] 긴급 점검 안내</div>
+          <div>안녕하세요.</div>
+          <div>서버 안정화를 위한 긴급 점검이 진행됩니다. 자세한 내용은 아래를 확인 부탁드립니다.</div>
+          <div class="p-3 bg-gray-900 border border-gray-800 rounded my-3 space-y-1">
+            <div><strong>■ 점검 시간:</strong> ${time}</div>
+            <div><strong>■ 점검 내용:</strong> ${reason}</div>
+            <div class="pt-1"><strong>■ 참고사항</strong></div>
+            <div class="text-gray-400 pl-2">- 해당 기간 동안 게임 접속 및 서비스 이용이 불가능합니다.</div>
+            <div class="text-gray-400 pl-2">- 점검 시간은 진행 상황에 따라 변동될 수 있습니다.</div>
           </div>
-          <p>서비스 이용에 불편을 드려 대단히 죄송합니다.<br>여러분께 더욱 쾌적한 서비스를 제공할 수 있도록 노력하겠습니다.</p>
-          <p>감사합니다.</p>
+          <div>서비스 이용에 불편을 드려 대단히 죄송하며, 더욱 쾌적한 서비스를 제공할 수 있도록 최선을 다하겠습니다.</div>
+          <div class="mt-2">감사합니다.</div>
         `;
       } else {
         const time = document.getElementById('sim-time').value;
         const reason = document.getElementById('sim-reason').value;
         container.innerHTML = `
-          <p class="text-amber-400 font-bold">[공지] 비정상 게임 이용자 제재 안내</p>
-          <p>안녕하세요.</p>
-          <p>유저 여러분께 더욱 쾌적하고 공정한 게임 환경을 제공해 드릴 수 있도록 비정상적인 방법으로 게임을 이용한 계정에 대한 제재 조치가 진행되어 안내드립니다.</p>
-          <div class="p-3 bg-gray-900 border border-gray-800 rounded my-2 space-y-1">
-            <p><strong>■ 조치 일시:</strong> ${time}</p>
-            <p><strong>■ 제재 사유:</strong> ${reason}</p>
-            <p><strong>■ 제재 내역:</strong> 약관 위반 계정 총 142건 (영구 정지 및 재화 회수)</p>
+          <div class="text-amber-400 font-bold text-sm mb-2">[공지] 비정상 게임 이용자 제재 안내</div>
+          <div>안녕하세요.</div>
+          <div>유저 여러분께 더욱 쾌적하고 공정한 게임 환경을 제공해 드릴 수 있도록 비정상적인 방법으로 게임을 이용한 계정에 대한 제재 조치가 진행되어 안내드립니다.</div>
+          <div class="p-3 bg-gray-900 border border-gray-800 rounded my-3 space-y-1">
+            <div><strong>■ 조치 일시:</strong> ${time}</div>
+            <div><strong>■ 제재 사유:</strong> ${reason}</div>
+            <div><strong>■ 제재 내역:</strong> 약관 위반 계정 총 142건 (영구 정지 및 재화 회수)</div>
           </div>
-          <p>앞으로도 쾌적한 게임 서비스 제공을 위해 최선을 다하겠습니다.</p>
-          <p>감사합니다.</p>
+          <div>앞으로도 쾌적한 게임 서비스 제공을 위해 최선을 다하겠습니다.</div>
+          <div class="mt-2">감사합니다.</div>
         `;
       }
     }
