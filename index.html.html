@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="ko" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>전여진 - 게임 라이브 운영 & GM 포트폴리오 (YEOJIN JEON)</title>
+  
+  <!-- Tailwind CSS & Lucide Icons -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              400: '#818cf8',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              900: '#312e81',
+            },
+            game: {
+              accent: '#10b981', // Live status green
+              gold: '#f59e0b',
+              purple: '#8b5cf6',
+              danger: '#ef4444',
+              dark: '#0b0f19',
+              card: '#111827',
+              border: '#1f2937'
+            }
+          },
+          fontFamily: {
+            sans: ['Pretendard', 'Inter', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'Fira Code', 'Consolas', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+    
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0b0f19;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #374151;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #4b5563;
+    }
+
+    .glow-effect {
+      box-shadow: 0 0 25px -5px rgba(99, 102, 241, 0.25);
+    }
+    .glow-green {
+      box-shadow: 0 0 20px -3px rgba(16, 185, 129, 0.3);
+    }
+  </style>
+</head>
+<body class="bg-game-dark text-gray-100 font-sans antialiased min-h-screen flex flex-col selection:bg-brand-500 selection:text-white">
+
+  <!-- Top Navigation -->
+  <header class="sticky top-0 z-40 bg-game-dark/80 backdrop-blur-md border-b border-game-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-brand-600 to-indigo-400 flex items-center justify-center font-extrabold text-white text-lg shadow-lg">
+          YJ
+        </div>
+        <div>
+          <span class="font-bold text-white text-base tracking-tight block">전여진</span>
+          <span class="text-xs text-brand-400 font-mono">LIVE OPS SPECIALIST</span>
+        </div>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-300">
+        <a href="#summary" class="hover:text-brand-400 transition-colors">OVERVIEW</a>
+        <a href="#skills" class="hover:text-brand-400 transition-colors">SKILLS</a>
+        <a href="#projects" class="hover:text-brand-400 transition-colors">PROJECTS</a>
+        <a href="#simulator" class="hover:text-brand-400 transition-colors flex items-center gap-1.5 text-brand-400 bg-brand-500/10 px-3 py-1 rounded-full border border-brand-500/30">
+          <i data-lucide="terminal" class="w-3.5 h-3.5"></i> SIMULATOR
+        </a>
+        <a href="#achievements" class="hover:text-brand-400 transition-colors">ACHIEVEMENTS</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <span class="inline-flex items-center gap-1.5 text-xs font-mono px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          LIVE SERVICE READY
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-16">
+
+    <!-- HERO SECTION -->
+    <section id="summary" class="relative rounded-2xl bg-gradient-to-b from-game-card to-gray-900 border border-game-border p-6 sm:p-10 overflow-hidden glow-effect">
+      <div class="absolute -right-20 -top-20 w-96 h-96 bg-brand-600/10 rounded-full blur-3xl pointer-events-none"></div>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 text-brand-400 text-xs font-mono border border-brand-500/20">
+            <i data-lucide="gamepad-2" class="w-3.5 h-3.5"></i> GAME MASTER / LIVE OPERATIONS PM
+          </div>
+          
+          <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+            유저 소통과 라이브 안정성을 책임지는 <br class="hidden sm:inline">
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 via-indigo-300 to-emerald-400">게임 운영 전문가 전여진</span>입니다.
+          </h1>
+
+          <p class="text-gray-300 text-base sm:text-lg leading-relaxed">
+            PC, 모바일, 크로스플랫폼 환경의 다중 라이브 게임 서비스 경험을 바탕으로, <strong>안정적인 정기 점검 관리, 글로벌 커뮤니티 빌딩, 위기 대응 프로세스 수립, 매출 극대화 이벤트</strong>를 실행해왔습니다.
+          </p>
+
+          <div class="flex flex-wrap gap-2 text-xs font-medium text-gray-300">
+            <span class="px-3 py-1.5 rounded-lg bg-gray-800 border border-gray-700">#도전의아이콘</span>
+            <span class="px-3 py-1.5 rounded-lg bg-gray-800 border border-gray-700">#긍정적사고</span>
+            <span class="px-3 py-1.5 rounded-lg bg-gray-800 border border-gray-700">#책임감</span>
+            <span class="px-3 py-1.5 rounded-lg bg-gray-800 border border-gray-700">#서비스마인드</span>
+            <span class="px-3 py-1.5 rounded-lg bg-gray-800 border border-gray-700">#친화력</span>
+            <span class="px-3 py-1.5 rounded-lg bg-gray-800 border border-gray-700">#꼼꼼함</span>
+          </div>
+
+          <!-- Contact Quick Info -->
+          <div class="pt-4 border-t border-gray-800 grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-mono text-gray-400">
+            <div class="flex items-center gap-2">
+              <i data-lucide="mail" class="w-4 h-4 text-brand-400"></i>
+              <span>mittyeojin@gmail.com</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <i data-lucide="phone" class="w-4 h-4 text-brand-400"></i>
+              <span>010-8033-7712</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <i data-lucide="languages" class="w-4 h-4 text-brand-400"></i>
+              <span>TOEIC 855 / 비즈니스 영어</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Profile Details Box -->
+        <div class="lg:col-span-5 bg-gray-950/80 rounded-xl p-6 border border-gray-800 space-y-4">
+          <div class="flex justify-between items-center border-b border-gray-800 pb-3">
+            <span class="font-mono text-xs text-brand-400 tracking-wider">STATUS // PROFILE</span>
+            <span class="text-xs px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-mono">ACTIVE GM</span>
+          </div>
+
+          <div class="space-y-3 font-mono text-xs">
+            <div class="flex justify-between py-1 border-b border-gray-900">
+              <span class="text-gray-500">성명</span>
+              <span class="text-white font-bold">전여진 (YEOJIN JEON)</span>
+            </div>
+            <div class="flex justify-between py-1 border-b border-gray-900">
+              <span class="text-gray-500">생년월일</span>
+              <span class="text-gray-300">1995.10.16</span>
+            </div>
+            <div class="flex justify-between py-1 border-b border-gray-900">
+              <span class="text-gray-500">직무 분야</span>
+              <span class="text-indigo-300">Game Master (GM) / PM</span>
+            </div>
+            <div class="flex justify-between py-1 border-b border-gray-900">
+              <span class="text-gray-500">학력</span>
+              <span class="text-gray-300 text-right">Manitoba Institute of Trades and Technology (Network & Computer Technology)</span>
+            </div>
+            <div class="flex justify-between py-1">
+              <span class="text-gray-500">어학 성적</span>
+              <span class="text-emerald-400">TOEIC 855 (비즈니스 영어 가능)</span>
+            </div>
+          </div>
+
+          <div class="pt-2">
+            <div class="p-3 rounded-lg bg-brand-950/40 border border-brand-800/40 text-xs text-gray-300">
+              <div class="font-bold text-brand-300 mb-1 flex items-center gap-1.5">
+                <i data-lucide="shield-check" class="w-4 h-4 text-brand-400"></i> 핵심 강점
+              </div>
+              글로벌 타겟 서비스 운영, 라이브 점검 프로세스 고도화, 어뷰징/임의 환불 제재, 커뮤니티 인지도 및 소통 극대화
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CORE SKILLS SECTION -->
+    <section id="skills" class="space-y-6">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-2 border-b border-game-border pb-4">
+        <div>
+          <span class="font-mono text-xs text-brand-400 tracking-wider uppercase">Capability & Expertise</span>
+          <h2 class="text-2xl font-bold text-white tracking-tight">주요 역량 및 라이브 운영 스킬</h2>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Skill 1 -->
+        <div class="bg-game-card border border-game-border rounded-xl p-6 space-y-4 hover:border-brand-500/50 transition-all">
+          <div class="w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+            <i data-lucide="activity" class="w-5 h-5"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white">라이브 점검 & 이슈 대응</h3>
+          <p class="text-sm text-gray-400 leading-relaxed">
+            정기/긴급 점검 대응, 라이브 서버 장애 상황 시 실시간 공지 발송, 현황 파악 및 개발팀 리포팅 체계 구축.
+          </p>
+          <div class="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
+            <div class="bg-emerald-400 h-full rounded-full" style="width: 95%;"></div>
+          </div>
+        </div>
+
+        <!-- Skill 2 -->
+        <div class="bg-game-card border border-game-border rounded-xl p-6 space-y-4 hover:border-brand-500/50 transition-all">
+          <div class="w-10 h-10 rounded-lg bg-brand-500/10 border border-brand-500/30 flex items-center justify-center text-brand-400">
+            <i data-lucide="message-square" class="w-5 h-5"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white">커뮤니티 & GM 콘텐츠</h3>
+          <p class="text-sm text-gray-400 leading-relaxed">
+            공식 라이브 방송 진행, GM 이벤트 기획 및 글로벌 SNS 팬덤 맞춤 축전 영상/공지사항 작성으로 리텐션 극대화.
+          </p>
+          <div class="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
+            <div class="bg-brand-500 h-full rounded-full" style="width: 90%;"></div>
+          </div>
+        </div>
+
+        <!-- Skill 3 -->
+        <div class="bg-game-card border border-game-border rounded-xl p-6 space-y-4 hover:border-brand-500/50 transition-all">
+          <div class="w-10 h-10 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400">
+            <i data-lucide="shield-alert" class="w-5 h-5"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white">어뷰징 & 정책 관리</h3>
+          <p class="text-sm text-gray-400 leading-relaxed">
+            임의 환불 단속, 핵/어뷰징 대응, 고객센터 CS 프로세스 개선, 망분리 보안 가이드 및 글로벌 컴플라이언스 준수.
+          </p>
+          <div class="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
+            <div class="bg-amber-400 h-full rounded-full" style="width: 88%;"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects" class="space-y-6">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-game-border pb-4">
+        <div>
+          <span class="font-mono text-xs text-brand-400 tracking-wider uppercase">Track Record</span>
+          <h2 class="text-2xl font-bold text-white tracking-tight">프로젝트 포트폴리오 (총 7건)</h2>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="flex flex-wrap gap-2 text-xs font-mono" id="project-filters">
+          <button data-filter="all" class="px-3 py-1.5 rounded-lg bg-brand-600 text-white font-bold border border-brand-500 filter-btn">ALL (7)</button>
+          <button data-filter="PC" class="px-3 py-1.5 rounded-lg bg-gray-800 text-gray-300 hover:text-white border border-gray-700 filter-btn">PC</button>
+          <button data-filter="Mobile" class="px-3 py-1.5 rounded-lg bg-gray-800 text-gray-300 hover:text-white border border-gray-700 filter-btn">MOBILE</button>
+          <button data-filter="Cross-Platform" class="px-3 py-1.5 rounded-lg bg-gray-800 text-gray-300 hover:text-white border border-gray-700 filter-btn">CROSS-PLATFORM</button>
+        </div>
+      </div>
+
+      <!-- Project Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="projects-grid">
+
+        <!-- Project 1: Dragon Nest -->
+        <div class="project-card bg-game-card border border-game-border rounded-xl p-6 flex flex-col justify-between hover:border-brand-500/60 transition-all glow-effect" data-platform="PC">
+          <div class="space-y-4">
+            <div class="flex justify-between items-start">
+              <span class="px-2.5 py-0.5 rounded bg-brand-500/20 text-brand-300 border border-brand-500/30 text-xs font-mono font-bold">PM</span>
+              <span class="text-xs font-mono text-gray-400">2018.05 ~ 2021.05</span>
+            </div>
+            
+            <div>
+              <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                Dragon Nest
+              </h3>
+              <span class="text-xs font-mono text-indigo-400">PC Online</span>
+            </div>
+
+            <div class="space-y-2 text-xs text-gray-300">
+              <p><strong class="text-rose-400">💥 Issues:</strong> 해외 서비스 유저 이탈 방지 및 매출 구조 개선 필요.</p>
+              <p><strong class="text-emerald-400">🛠 Strategy:</strong> VoC 기반 유저 분석, 대규모 업데이트 연계 마케팅 기획 및 이벤트 진행.</p>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-gray-800">
+            <div class="bg-gray-950 p-3 rounded-lg border border-emerald-500/30 text-xs">
+              <span class="text-emerald-400 font-bold">🎯 Key Impact:</span><br>
+              유저 리텐션 증대 & 재런칭 이후 <strong class="text-white">역대 최고 매출 달성</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2: 데카론M -->
+        <div class="project-card bg-game-card border border-game-border rounded-xl p-6 flex flex-col justify-between hover:border-brand-500/60 transition-all" data-platform="Mobile">
+          <div class="space-y-4">
+            <div class="flex justify-between items-start">
+              <span class="px-2.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-mono font-bold">GM</span>
+              <span class="text-xs font-mono text-gray-400">2022.10 ~ 2024.06</span>
+            </div>
+            
+            <div>
+              <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                데카론M
+              </h3>
+              <span class="text-xs font-mono text-indigo-400">Mobile RPG</span>
+            </div>
+
+            <div class="space-y-2 text-xs text-gray-300">
+              <p><strong class="text-rose-400">💥 Issues:</strong> 정기 점검 관리, 라이브 장애 대응 및 유저 만족도 제고 과제.</p>
+              <p><strong class="text-emerald-400">🛠 Strategy:</strong> 라이브 점검 프로세스 구축, 운영 정책 및 고객센터 CS 개선안 제안.</p>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-gray-800">
+            <div class="bg-gray-950 p-3 rounded-lg border border-brand-500/30 text-xs">
+              <span class="text-brand-400 font-bold">🎯 Key Impact:</span><br>
+              CS 프로세스 개선으로 <strong class="text-white">유저 서비스 만족도 증대</strong> & 서비스 안정화
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3: Dekaron G -->
+        <div class="project-card bg-game-card border border-game-border rounded-xl p-6 flex flex-col justify-between hover:border-brand-500/60 transition-all" data-platform="Cross-Platform">
+          <div class="space-y-4">
+            <div class="flex justify-between items-start">
+              <span class="px-2.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-mono font-bold">GM</span>
+              <span class="text-xs font-mono text-gray-400">2022.10 ~ 2024.08</span>
+            </div>
+            
+            <div>
+              <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                Dekaron G
+              </h3>
+              <span class="text-xs font-mono text-indigo-400">Cross-Platform (Global)</span>
+            </div>
+
+            <div class="space-y-2 text-xs text-gray-300">
+              <p><strong class="text-rose-400">💥 Issues:</strong> 글로벌 타겟 유저 리텐션 유지 및 어뷰징 대응.</p>
+              <p><strong class="text-emerald-400">🛠 Strategy:</strong> 정보 제공형 GM 콘텐츠 제작, 운영 이벤트 및 임의 환불/어뷰징 단속 강화.</p>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-gray-800">
+            <div class="bg-gray-950 p-3 rounded-lg border border-amber-500/30 text-xs">
+              <span class="text-amber-400 font-bold">🎯 Key Impact:</span><br>
+              어뷰징 제재로 <strong class="text-white">매출 피해 최소화</strong> & 쾌적한 글로벌 환경 구축
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4: Friends Match: Tower Defense -->
+        <div class="project-card bg-game-card border border-game-border rounded-xl p-6 flex flex-col justify-between hover:border-brand-500/60 transition-all" data-platform="Mobile">
+          <div class="space-y-4">
+            <div class="flex justify-between items-start">
+              <span class="px-2.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-mono font-bold">GM</span>
+              <span class="text-xs font-mono text-gray-400">2024.06 ~ 2024.11</span>
+            </div>
+            
+            <div>
+              <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                Friends Match: Tower Defense
+              </h3>
+              <span class="text-xs font-mono text-indigo-400">Mobile Strategy</span>
+            </div>
+
+            <div class="space-y-2 text-xs text-gray-300">
+              <p><strong class="text-rose-400">💥 Issues:</strong> 신규 글로벌 게임 런칭을 위한 운영 전반 체계 부재.</p>
+              <p><strong class="text-emerald-400">🛠 Strategy:</strong> 운영 프로세스 수립, 툴 테스트, 글로벌 커뮤니티 개설 및 리스크 사전 검토.</p>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-gray-800">
+            <div class="bg-gray-950 p-3 rounded-lg border border-brand-500/30 text-xs">
+              <span class="text-brand-400 font-bold">🎯 Key Impact:</span><br>
+              성공적인 글로벌 런칭 및 <strong class="text-white">게임 콘텐츠 완성도 향상</strong> 기여
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 5: BTS Island: In The Seom -->
+        <div class="project-card bg-game-card border border-game-border rounded-xl p-6 flex flex-col justify-between hover:border-brand-500/60 transition-all glow-green" data-platform="Mobile">
+          <div class="space-y-4">
+            <div class="flex justify-between items-start">
+              <span class="px-2.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-mono font-bold">GM</span>
+              <span class="text-xs font-mono text-gray-400">2025.03 ~ 2026.06</span>
+            </div>
+            
+            <div>
+              <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                BTS Island: In The Seom
+              </h3>
+              <span class="text-xs font-mono text-indigo-400">Mobile Casual / Global Fandom</span>
+            </div>
+
+            <div class="space-y-2 text-xs text-gray-300">
+              <p><strong class="text-rose-400">💥 Issues:</strong> 글로벌 라이브 서비스 고도화 및 팬덤 커뮤니티 활성화.</p>
+              <p><strong class="text-emerald-400">🛠 Strategy:</strong> 운영툴 개선, 망분리 보안 가이드 구축, 아티스트 생일 맞춤형 콘텐츠 기획.</p>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-gray-800">
+            <div class="bg-gray-950 p-3 rounded-lg border border-emerald-500/30 text-xs">
+              <span class="text-emerald-400 font-bold">🎯 Key Impact:</span><br>
+              축전 영상 업로드 당월 <strong class="text-white">평균 RT 12.7배 / 노출 5.3배 증가</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 6: Arkheron -->
+        <div class="project-card bg-game-card border border-game-border rounded-xl p-6 flex flex-col justify-between hover:border-brand-500/60 transition-all" data-platform="Cross-Platform">
+          <div class="space-y-4">
+            <div class="flex justify-between items-start">
+              <span class="px-2.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-mono font-bold">GM</span>
+              <span class="text-xs font-mono text-gray-400">2026.06 ~ NOW</span>
+            </div>
+            
+            <div>
+              <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                Arkheron
+              </h3>
+              <span class="text-xs font-mono text-indigo-400">Cross-Platform MMORPG</span>
+            </div>
+
+            <div class="space-y-2 text-xs text-gray-300">
+              <p><strong class="text-rose-400">💥 Issues:</strong> 멀티플랫폼 대응, CBT 운영 프로세스 수립 및 소통 강화.</p>
+              <p><strong class="text-emerald-400">🛠 Strategy:</strong> 영문 공지 현지화, 공식 라이브 방송 진행, 유튜브 숏츠 기획 및 GM 이벤트.</p>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-gray-800">
+            <div class="bg-gray-950 p-3 rounded-lg border border-indigo-500/30 text-xs">
+              <span class="text-indigo-400 font-bold">🎯 Key Impact:</span><br>
+              브랜드 인지도 형성, <strong class="text-white">CBT 참여 유도 & 유저 접점 극대화</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 7: Final Third -->
+        <div class="project-card bg-game-card border border-game-border rounded-xl p-6 flex flex-col justify-between hover:border-brand-500/60 transition-all md:col-span-2 lg:col-span-3" data-platform="Cross-Platform">
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+            <div class="md:col-span-8 space-y-3">
+              <div class="flex items-center gap-3">
+                <span class="px-2.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-mono font-bold">GM</span>
+                <span class="text-xs font-mono text-gray-400">2026.09 ~ NOW</span>
+                <span class="text-xs px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 font-mono">Cross-Platform</span>
+              </div>
+
+              <h3 class="text-2xl font-bold text-white">Final Third</h3>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-gray-300">
+                <p><strong class="text-rose-400">💥 Issues:</strong> 멀티 플랫폼 환경에서의 CBT 운영 프로세스 구축 및 소통 체계 수립.</p>
+                <p><strong class="text-emerald-400">🛠 Strategy:</strong> CBT 프로세스 단계별 수립, 공식 공지사항 및 유저 밀착형 운영 콘텐츠 작성.</p>
+              </div>
+            </div>
+
+            <div class="md:col-span-4 bg-gray-950 p-4 rounded-xl border border-emerald-500/30 text-xs">
+              <span class="text-emerald-400 font-bold block mb-1">🎯 Key Impact</span>
+              <p class="text-gray-200 leading-relaxed">
+                테스트 기간 동안 <strong class="text-emerald-300">안정적인 정보 전달 및 소통 기반 마련</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- LIVE INCIDENT & NOTICE BUILDER SIMULATOR -->
+    <section id="simulator" class="bg-game-card border border-brand-500/40 rounded-2xl p-6 sm:p-8 space-y-6 glow-effect">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-800 pb-4">
+        <div>
+          <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-brand-500/20 text-brand-300 text-xs font-mono mb-1">
+            <i data-lucide="cpu" class="w-3.5 h-3.5"></i> INTERACTIVE GM TOOL
+          </div>
+          <h2 class="text-2xl font-bold text-white tracking-tight">라이브 긴급 점검 공지 작성 시뮬레이터</h2>
+        </div>
+        <p class="text-xs text-gray-400 font-mono">실제 긴급 상황 발생 시 진행할 공지사항 및 보상안 시뮬레이션</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <!-- Form Controls -->
+        <div class="lg:col-span-5 space-y-4">
+          <div>
+            <label class="block text-xs font-mono text-gray-300 mb-1">이슈 유형 선택</label>
+            <select id="issue-type" onchange="updateNoticePreview()" class="w-full bg-gray-950 border border-gray-800 rounded-lg p-2.5 text-xs text-gray-200 focus:border-brand-500 focus:outline-none">
+              <option value="emergency" selected>긴급 점검 안내</option>
+              <option value="abuse">어뷰징 / 불법 프로그램 제재 안내</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-mono text-gray-300 mb-1">점검/장애 시간</label>
+            <input type="text" id="sim-time" value="2026년 10월 10일 14:00 ~ 16:00 (2시간)" oninput="updateNoticePreview()" class="w-full bg-gray-950 border border-gray-800 rounded-lg p-2.5 text-xs text-gray-200 focus:border-brand-500 focus:outline-none">
+          </div>
+
+          <div>
+            <label class="block text-xs font-mono text-gray-300 mb-1">점검 내용</label>
+            <input type="text" id="sim-reason" value="서버 안정화 작업" oninput="updateNoticePreview()" class="w-full bg-gray-950 border border-gray-800 rounded-lg p-2.5 text-xs text-gray-200 focus:border-brand-500 focus:outline-none">
+          </div>
+
+          <button onclick="updateNoticePreview()" class="w-full py-3 bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs rounded-lg transition-all shadow-md flex items-center justify-center gap-2">
+            <i data-lucide="refresh-cw" class="w-4 h-4"></i> 공지사항 실시간 업데이트
+          </button>
+        </div>
+
+        <!-- Live Preview Output -->
+        <div class="lg:col-span-7 bg-gray-950 border border-gray-800 rounded-xl p-5 space-y-4 font-mono text-xs relative">
+          <div class="flex justify-between items-center border-b border-gray-800 pb-2 text-gray-400">
+            <span class="flex items-center gap-1.5"><i data-lucide="file-text" class="w-4 h-4 text-emerald-400"></i> OFFICIAL GM NOTICE PREVIEW</span>
+            <span class="text-[10px] text-gray-500">FORMAT: OFFICIAL_KR</span>
+          </div>
+
+          <div id="notice-preview-content" class="text-gray-300 leading-relaxed whitespace-pre-line space-y-3">
+            <!-- Dynamic Notice JS insertion -->
+          </div>
+
+          <div class="pt-3 border-t border-gray-800 flex justify-between items-center">
+            <span class="text-[10px] text-gray-500">GM YEOJIN JEON AUTHORIZED</span>
+            <button onclick="copyNoticeText()" class="px-3 py-1 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded border border-gray-700 text-[11px] flex items-center gap-1">
+              <i data-lucide="copy" class="w-3 h-3"></i> 텍스트 복사
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACHIEVEMENTS SECTION -->
+    <section id="achievements" class="bg-game-card border border-game-border rounded-xl p-6 sm:p-8 space-y-6">
+      <div class="border-b border-game-border pb-4">
+        <span class="font-mono text-xs text-brand-400 tracking-wider uppercase">Key Accomplishments</span>
+        <h2 class="text-2xl font-bold text-white tracking-tight">핵심 성과 요약 (ACHIEVEMENTS)</h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="bg-gray-950/60 border border-amber-500/40 rounded-xl p-5 hover:border-amber-400 transition-all space-y-2">
+          <div class="flex items-center gap-2 text-amber-400 font-bold text-base">
+            <i data-lucide="trophy" class="w-5 h-5"></i> Dragon Nest
+          </div>
+          <p class="text-xs sm:text-sm text-gray-300 leading-relaxed">
+            해외 서비스 유저 분석 및 마케팅 연계 이벤트 추진으로 서비스 재런칭 이후 <strong class="text-emerald-400">역대 최고 매출 달성</strong>
+          </p>
+        </div>
+
+        <div class="bg-gray-950/60 border border-amber-500/40 rounded-xl p-5 hover:border-amber-400 transition-all space-y-2">
+          <div class="flex items-center gap-2 text-amber-400 font-bold text-base">
+            <i data-lucide="trophy" class="w-5 h-5"></i> BTS Island: In The Seom
+          </div>
+          <p class="text-xs sm:text-sm text-gray-300 leading-relaxed">
+            팬덤 맞춤형 이벤트로 축전 영상 업로드 당월 <strong class="text-emerald-400">평균 RT 12.7배 / 노출 5.3배 증가</strong> 및 보안 가이드 구축
+          </p>
+        </div>
+
+        <div class="bg-gray-950/60 border border-amber-500/40 rounded-xl p-5 hover:border-amber-400 transition-all space-y-2">
+          <div class="flex items-center gap-2 text-amber-400 font-bold text-base">
+            <i data-lucide="trophy" class="w-5 h-5"></i> Dekaron G
+          </div>
+          <p class="text-xs sm:text-sm text-gray-300 leading-relaxed">
+            어뷰징 및 임의 환불 집중 단속, 모니터링 강화를 통한 <strong class="text-emerald-400">매출 피해 최소화</strong> & 글로벌 환경 안정화
+          </p>
+        </div>
+
+        <div class="bg-gray-950/60 border border-amber-500/40 rounded-xl p-5 hover:border-amber-400 transition-all space-y-2">
+          <div class="flex items-center gap-2 text-amber-400 font-bold text-base">
+            <i data-lucide="trophy" class="w-5 h-5"></i> Friends Match: Tower Defense
+          </div>
+          <p class="text-xs sm:text-sm text-gray-300 leading-relaxed">
+            글로벌 신규 런칭 성공, 운영 프로세스 완비 및 <strong class="text-emerald-400">게임 콘텐츠 완성도 향상</strong> 기여
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-game-border bg-game-dark py-8 text-center text-xs font-mono text-gray-500">
+    <div class="max-w-7xl mx-auto px-4 space-y-2">
+      <p>© YEOJIN JEON. All rights reserved.</p>
+      <p class="text-[11px] text-gray-600">Game Live Operations & GM Portfolio | Contact: mittyeojin@gmail.com</p>
+    </div>
+  </footer>
+
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // Project Filtering Logic
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.getAttribute('data-filter');
+
+        filterBtns.forEach(b => {
+          b.classList.remove('bg-brand-600', 'text-white', 'border-brand-500');
+          b.classList.add('bg-gray-800', 'text-gray-300', 'border-gray-700');
+        });
+        btn.classList.add('bg-brand-600', 'text-white', 'border-brand-500');
+        btn.classList.remove('bg-gray-800', 'text-gray-300', 'border-gray-700');
+
+        projectCards.forEach(card => {
+          if (filter === 'all' || card.getAttribute('data-platform') === filter) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Notice Generator Simulator
+    function updateNoticePreview() {
+      const type = document.getElementById('issue-type').value;
+      const time = document.getElementById('sim-time').value;
+      const reason = document.getElementById('sim-reason').value;
+
+      const container = document.getElementById('notice-preview-content');
+
+      if (type === 'emergency') {
+        container.innerHTML = `
+          <p class="text-brand-300 font-bold">[안내] 긴급 점검 안내</p>
+          <p>안녕하세요.</p>
+          <p>서버 안정화를 위한 긴급 점검이 진행됩니다.<br>자세한 내용은 아래를 확인 부탁드립니다.</p>
+          <div class="p-3 bg-gray-900 border border-gray-800 rounded my-2 space-y-1">
+            <p><strong>■ 점검 시간:</strong> ${time}</p>
+            <p><strong>■ 점검 내용:</strong> ${reason}</p>
+            <p><strong>■ 참고사항</strong></p>
+            <p class="text-gray-400 pl-2">- 해당 기간 동안 게임 접속 및 서비스 이용이 불가능합니다.</p>
+            <p class="text-gray-400 pl-2">- 점검 시간은 진행 상황에 따라 변동될 수 있습니다.</p>
+          </div>
+          <p>서비스 이용에 불편을 드려 대단히 죄송합니다.<br>여러분께 더욱 쾌적한 서비스를 제공할 수 있도록 노력하겠습니다.</p>
+          <p>감사합니다.</p>
+        `;
+      } else {
+        container.innerHTML = `
+          <p class="text-amber-400 font-bold">[공지] 비정상 게임 이용자 제재 안내</p>
+          <p>안녕하세요.</p>
+          <p>유저 여러분께 더욱 쾌적하고 공정한 게임 환경을 제공해 드릴 수 있도록 비정상적인 방법으로 게임을 이용한 계정에 대한 제재 조치가 진행되어 안내 드립니다.</p>
+          <div class="p-3 bg-gray-900 border border-gray-800 rounded my-2 space-y-1">
+            <p><strong>■ 조치 일시:</strong> ${time}</p>
+            <p><strong>■ 제재 사유:</strong> ${reason}</p>
+            <p><strong>■ 제재 내역:</strong> 약관 위반 계정 총 142건 (영구 정지 및 재화 회수)</p>
+          </div>
+          <p>앞으로도 쾌적한 게임 서비스 제공을 위해 최선을 다하겠습니다.</p>
+          <p>감사합니다.</p>
+        `;
+      }
+    }
+
+    function copyNoticeText() {
+      const text = document.getElementById('notice-preview-content').innerText;
+      const tempTextArea = document.createElement('textarea');
+      tempTextArea.value = text;
+      document.body.appendChild(tempTextArea);
+      tempTextArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(tempTextArea);
+      alert('공지사항 텍스트가 클립보드에 복사되었습니다.');
+    }
+
+    // Run notice preview once on load
+    window.onload = function() {
+      updateNoticePreview();
+    };
+  </script>
+</body>
+</html>
